@@ -70,15 +70,9 @@
       text-align: right;
     }
 
-    #debugBox {
-      display: none;
-      background: #111;
-      color: #0f0;
-      padding: 12px;
-      margin-top: 15px;
-      white-space: pre-wrap;
-      font-size: 12px;
-      overflow-x: auto;
+    #loadMoreBtn {
+      margin-top: 16px;
+      background: #111827;
     }
   </style>
 </head>
@@ -144,22 +138,17 @@
       </table>
     </div>
 
-    <pre id="debugBox"></pre>
+    <button id="loadMoreBtn" type="button">
+      Load More
+    </button>
   </div>
 
   <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzcelyMSU0DWJjJcvc8vWjixJU7qjX3UXSOrZg-L9nIRNrymhpl7N8KisRQzaZzDZFe7g/exec";
 
-    document.getElementById("date").valueAsDate = new Date();
+    let currentLimit = 20;
 
-    function getValue(row, keys) {
-      for (const key of keys) {
-        if (row[key] !== undefined && row[key] !== null && row[key] !== "") {
-          return row[key];
-        }
-      }
-      return "";
-    }
+    document.getElementById("date").valueAsDate = new Date();
 
     document.getElementById("expenseForm").addEventListener("submit", async function(e) {
       e.preventDefault();
@@ -189,6 +178,7 @@
         document.getElementById("expenseForm").reset();
         document.getElementById("date").valueAsDate = new Date();
 
+        currentLimit = 20;
         setTimeout(loadRecentInputs, 1500);
 
       } catch (error) {
@@ -196,16 +186,24 @@
       }
     });
 
+    document.getElementById("loadMoreBtn").addEventListener("click", function() {
+      currentLimit += 20;
+      loadRecentInputs();
+    });
+
     async function loadRecentInputs() {
       const table = document.getElementById("recentTable");
-      const debugBox = document.getElementById("debugBox");
 
       try {
-        const response = await fetch(WEB_APP_URL + "?t=" + Date.now());
-        const data = await response.json();
+        const response = await fetch(
+          WEB_APP_URL +
+          "?limit=" +
+          currentLimit +
+          "&t=" +
+          Date.now()
+        );
 
-        debugBox.style.display = "none";
-        debugBox.textContent = JSON.stringify(data, null, 2);
+        const data = await response.json();
 
         table.innerHTML = "";
 
@@ -215,31 +213,28 @@
         }
 
         data.forEach(row => {
-          const date = getValue(row, ["date", "Date"]);
-          const type = getValue(row, ["type", "Type"]);
-          const category = getValue(row, ["category", "Category"]);
-          const subCategory = getValue(row, ["subCategory", "Sub-Category", "Sub Category"]);
-          const amount = getValue(row, ["amount", "Amount (RM)", "Amount"]);
-          const notes = getValue(row, ["notes", "Notes"]);
-
           const tr = document.createElement("tr");
 
           tr.innerHTML = `
-            <td>${date}</td>
-            <td>${type}</td>
-            <td>${category}</td>
-            <td>${subCategory}</td>
-            <td class="amount">RM ${amount}</td>
-            <td>${notes}</td>
+            <td>${row.date || ""}</td>
+            <td>${row.type || ""}</td>
+            <td>${row.category || ""}</td>
+            <td>${row.subCategory || ""}</td>
+            <td class="amount">RM ${row.amount || ""}</td>
+            <td>${row.notes || ""}</td>
           `;
 
           table.appendChild(tr);
         });
 
+        if (data.length < currentLimit) {
+          document.getElementById("loadMoreBtn").style.display = "none";
+        } else {
+          document.getElementById("loadMoreBtn").style.display = "block";
+        }
+
       } catch (error) {
         table.innerHTML = "<tr><td colspan='6'>Unable to load recent transactions.</td></tr>";
-        debugBox.style.display = "block";
-        debugBox.textContent = "Error loading data:\n" + error;
       }
     }
 
