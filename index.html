@@ -52,10 +52,24 @@
 <body>
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
+
     <a class="navbar-brand" href="/budget/">
-      <img src="/budget/icon_budget.png" alt="Logo" width="auto" height="24" class="d-inline-block align-text-top">
+      <img src="/budget/icon_budget.png"
+           alt="Logo"
+           width="auto"
+           height="24"
+           class="d-inline-block align-text-top">
       FZ Spending Tracker
     </a>
+
+    <button
+      id="logoutBtn"
+      class="btn btn-outline-danger btn-sm"
+      onclick="logout()"
+      style="display:none;">
+      Logout
+    </button>
+
   </div>
 </nav>
 
@@ -680,6 +694,7 @@ onAuthStateChanged(auth, function(user) {
   if (user && user.email === allowedEmail) {
     document.getElementById("loginScreen").style.display = "none";
     document.getElementById("app").style.display = "block";
+    document.getElementById("logoutBtn").style.display = "block";
 
     loadRecentInputs();
 
@@ -690,6 +705,7 @@ onAuthStateChanged(auth, function(user) {
   } else {
     document.getElementById("loginScreen").style.display = "block";
     document.getElementById("app").style.display = "none";
+    document.getElementById("logoutBtn").style.display = "none";
 
     if (refreshTimer) {
       clearInterval(refreshTimer);
