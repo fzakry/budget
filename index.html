@@ -59,6 +59,18 @@
   </div>
 </nav>
 
+<div id="loginScreen" class="tracker-container">
+  <div class="card">
+    <div class="card-body p-4 text-center">
+      <h5 class="mb-4">FZ Spending Tracker</h5>
+      <button class="btn btn-primary w-100 fw-bold" onclick="login()">
+        Login with Google
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="app" style="display:none;">
 <div class="tracker-container">
 
   <div class="card">
@@ -226,6 +238,7 @@
     </div>
   </div>
 
+</div>
 </div>
 
 <!-- Edit Modal -->
@@ -623,11 +636,72 @@ function shortCategory(category) {
 }
 
 
-  loadRecentInputs();
-  setInterval(loadRecentInputs, 10000);
+let refreshTimer = null;
 
 
 
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDLsYGSytzUpaC6-it-ZtDq9eAYNAIqZQY",
+  authDomain: "spendingtracker-214d4.firebaseapp.com",
+  projectId: "spendingtracker-214d4",
+  storageBucket: "spendingtracker-214d4.firebasestorage.app",
+  messagingSenderId: "1001402393044",
+  appId: "1:1001402393044:web:f9fafee35d2be947757641",
+  measurementId: "G-PS4H5GM81T"
+};
+
+const allowedEmail = "fakhrulzakry@gmail.com";
+
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+const provider = new GoogleAuthProvider();
+
+window.login = function () {
+  signInWithPopup(auth, provider);
+};
+
+window.logout = function () {
+  signOut(auth);
+};
+
+onAuthStateChanged(auth, function(user) {
+  if (user && user.email === allowedEmail) {
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("app").style.display = "block";
+
+    loadRecentInputs();
+
+    if (!refreshTimer) {
+      refreshTimer = setInterval(loadRecentInputs, 10000);
+    }
+
+  } else {
+    document.getElementById("loginScreen").style.display = "block";
+    document.getElementById("app").style.display = "none";
+
+    if (refreshTimer) {
+      clearInterval(refreshTimer);
+      refreshTimer = null;
+    }
+
+    if (user) {
+      alert("Access denied");
+      signOut(auth);
+    }
+  }
+});
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
