@@ -1,0 +1,1 @@
+Just casual spending tracker
