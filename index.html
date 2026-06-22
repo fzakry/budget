@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spending Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    input, select, textarea, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Spending Tracker</h2>
+
+  <form id="expenseForm">
+    <input type="date" id="date" required>
+
+    <select id="type" required>
+      <option value="Expense">Expense</option>
+      <option value="Income">Income</option>
+      <option value="Transfer">Transfer</option>
+    </select>
+
+    <select id="category" required>
+      <option value="">Select Category</option>
+      <option value="Income">Income</option>
+      <option value="Commitments">Commitments</option>
+      <option value="Family">Family</option>
+      <option value="Utilities">Utilities</option>
+      <option value="Lifestyle">Lifestyle</option>
+      <option value="Subscription">Subscription</option>
+      <option value="Investment">Investment</option>
+    </select>
+
+    <input type="text" id="subCategory" placeholder="Sub-Category" required>
+
+    <input type="number" id="amount" placeholder="Amount RM" step="0.01" required>
+
+    <textarea id="notes" placeholder="Notes"></textarea>
+
+    <button type="submit">Save Expense</button>
+  </form>
+
+  <p id="status"></p>
+
+  <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzcelyMSU0DWJjJcvc8vWjixJU7qjX3UXSOrZg-L9nIRNrymhpl7N8KisRQzaZzDZFe7g/exec";
+
+    document.getElementById("date").valueAsDate = new Date();
+
+    document.getElementById("expenseForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const payload = {
+        date: document.getElementById("date").value,
+        type: document.getElementById("type").value,
+        category: document.getElementById("category").value,
+        subCategory: document.getElementById("subCategory").value,
+        amount: document.getElementById("amount").value,
+        notes: document.getElementById("notes").value
+      };
+
+      document.getElementById("status").innerText = "Saving...";
+
+      try {
+        await fetch(WEB_APP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        document.getElementById("status").innerText = "Saved successfully.";
+        document.getElementById("expenseForm").reset();
+        document.getElementById("date").valueAsDate = new Date();
+
+      } catch (error) {
+        document.getElementById("status").innerText = "Error saving entry.";
+      }
+    });
+  </script>
+</body>
+</html>
