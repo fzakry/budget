@@ -4,7 +4,10 @@
   <title>Spending Tracker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
 
   <style>
     body {
@@ -94,7 +97,9 @@
   <div class="card">
     <div class="card-body p-4 text-center">
 
-      <h5 class="mb-4">FZ Spending Tracker</h5>
+      <h5 class="mb-4">
+        FZ Spending Tracker
+      </h5>
 
       <button
         class="btn btn-primary w-100 fw-bold"
@@ -112,365 +117,363 @@
 <!-- APP -->
 <div id="app" style="display:none;">
 
-<div class="page-container">
+  <div class="page-container">
 
 
-  <!-- ADD TRANSACTION -->
-  <div class="card">
+    <!-- ADD TRANSACTION -->
+    <div class="card">
 
-    <div class="card-body p-4">
+      <div class="card-body p-4">
 
-      <h5 class="mb-4">💰 Spending Tracker</h5>
+        <h5 class="mb-4">
+          💰 Spending Tracker
+        </h5>
 
-      <form id="expenseForm">
+        <form id="expenseForm">
 
 
-        <!-- DATE -->
-        <label class="form-label">Transaction Date</label>
+          <!-- DATE -->
+          <label class="form-label">
+            Transaction Date
+          </label>
 
-        <input
-          type="date"
-          id="date"
-          class="form-control mb-3"
-          required
-        >
+          <input
+            type="date"
+            id="date"
+            class="form-control mb-3"
+            required
+          >
 
 
-        <!-- BILLING MONTH -->
-        <label
-          for="billingMonth"
-          class="form-label"
-        >
-          Billing Month
-        </label>
+          <!-- BILLING MONTH -->
+          <label
+            for="billingMonth"
+            class="form-label"
+          >
+            Billing Month
+          </label>
 
-        <select
-          id="billingMonth"
-          class="form-select mb-3"
-          required
-        >
-        </select>
+          <select
+            id="billingMonth"
+            class="form-select mb-3"
+            required
+          >
+          </select>
 
 
-        <!-- TYPE -->
-        <select
-          id="type"
-          class="form-select mb-3"
-          required
-        >
+          <!-- TYPE -->
+          <select
+            id="type"
+            class="form-select mb-3"
+            required
+          >
 
-          <option value="">Select Type</option>
+            <option value="">
+              Select Type
+            </option>
 
-          <option value="Income">
-            Income
-          </option>
+            <option value="Income">
+              Income
+            </option>
 
-          <option value="Expense">
-            Expense
-          </option>
+            <option value="Expense">
+              Expense
+            </option>
 
-          <option value="Transfer">
-            Transfer
-          </option>
+            <option value="Transfer">
+              Transfer
+            </option>
 
-          <option value="Deduction">
-            Deduction
-          </option>
+            <option value="Deduction">
+              Deduction
+            </option>
 
-        </select>
+          </select>
 
 
-        <!-- CATEGORY -->
-        <select
-          id="category"
-          class="form-select mb-3"
-          required
-        >
+          <!-- CATEGORY -->
+          <select
+            id="category"
+            class="form-select mb-3"
+            required
+          >
 
-          <option value="">
-            Select Category
-          </option>
+            <option value="">
+              Select Category
+            </option>
 
-          <option value="Income">
-            Income
-          </option>
+            <option value="Income">
+              Income
+            </option>
 
-          <option value="Commitments">
-            Commitments
-          </option>
+            <option value="Commitments">
+              Commitments
+            </option>
 
-          <option value="Family">
-            Family
-          </option>
+            <option value="Family">
+              Family
+            </option>
 
-          <option value="Food & Beverage">
-            Food & Beverage
-          </option>
+            <option value="Food & Beverage">
+              Food & Beverage
+            </option>
 
-          <option value="Transportation">
-            Transportation
-          </option>
-
-          <option value="Utilities">
-            Utilities
-          </option>
-
-          <option value="Health">
-            Health
-          </option>
-
-          <option value="Lifestyle">
-            Lifestyle
-          </option>
-
-          <option value="Entertainment">
-            Entertainment
-          </option>
-
-          <option value="Shopping">
-            Shopping
-          </option>
-
-          <option value="Subscription">
-            Subscription
-          </option>
-
-          <option value="Investment">
-            Investment
-          </option>
-
-          <option value="Savings">
-            Savings
-          </option>
-
-          <option value="Debt">
-            Debt
-          </option>
-
-          <option value="Receivable">
-            Receivable
-          </option>
-
-          <option value="Statutory">
-            Statutory
-          </option>
-
-          <option value="Charity">
-            Charity
-          </option>
-
-          <option value="Others">
-            Others
-          </option>
-
-        </select>
-
-
-        <!-- SUB CATEGORY -->
-        <input
-          list="subCategoryList"
-          type="text"
-          id="subCategory"
-          class="form-control mb-3"
-          placeholder="Sub-Category"
-          required
-        >
-
-
-        <datalist id="subCategoryList">
-
-          <!-- Income -->
-          <option value="Main Salary">
-
-          <!-- Statutory -->
-          <option value="EPF Employee">
-          <option value="PCB Tax">
-          <option value="SOCSO">
-          <option value="EIS">
-
-          <!-- Commitments -->
-          <option value="House TR2">
-          <option value="Insurance AIA">
-          <option value="Insurance TM">
-
-          <option value="Credit Card HSBC">
-          <option value="Credit Card CIMB">
-          <option value="Credit Card Maybank">
-
-          <option value="SPLater">
-
-          <!-- Investment -->
-          <option value="ASB">
-          <option value="Gold">
-
-          <!-- Savings -->
-          <option value="Emergency Fund">
-          <option value="Travel Fund">
-          <option value="Car Fund">
-          <option value="Goals">
-
-          <!-- Utilities -->
-          <option value="Indah Water">
-          <option value="Time Internet">
-          <option value="Telco Umobile">
-          <option value="DBKL Taxes">
-          <option value="TNB">
-
-          <!-- Parking -->
-          <option value="Parking VP">
-          <option value="Parking MidValley">
-
-          <!-- Family -->
-          <option value="Insurance Mama">
-          <option value="Mama Allowance">
-          <option value="Family Others">
-
-          <!-- Receivable -->
-          <option value="Debt">
-
-          <!-- Lifestyle -->
-          <option value="Groceries">
-          <option value="Coffee">
-          <option value="Breakfast">
-          <option value="Lunch">
-          <option value="Dinner">
-          <option value="Eat and Chill">
-
-          <!-- Subscription -->
-          <option value="YouTube">
-          <option value="Spotify">
-          <option value="ChatGPT">
-          <option value="iCloud">
-
-        </datalist>
-
-
-        <!-- AMOUNT -->
-        <input
-          type="number"
-          id="amount"
-          class="form-control mb-3"
-          placeholder="Amount (RM)"
-          step="0.01"
-          required
-        >
-
-
-        <!-- NOTES -->
-        <textarea
-          id="notes"
-          class="form-control mb-3"
-          placeholder="Notes"
-        ></textarea>
-
-
-        <button
-          type="submit"
-          class="btn btn-primary w-100 fw-bold"
-        >
-          Save Transaction
-        </button>
-
-
-      </form>
-
-
-      <p id="status"></p>
-
-
-    </div>
-
-  </div>
-
-
-  <!-- RECENT TRANSACTIONS -->
-  <div class="card">
-
-    <div class="card-body p-4">
-
-      <h5 class="mb-3">
-        📋 Recent Transactions
-      </h5>
-
-
-      <div class="table-responsive">
-
-        <table
-          class="table table-hover align-middle"
-        >
-
-          <thead class="table-primary">
-
-            <tr>
-
-              <th
-                id="dateHeader"
-                style="cursor:pointer;"
-              >
-                Date ↓
-              </th>
-
-              <th>
-                Billing Month
-              </th>
-
-              <th>
-                Type
-              </th>
-
-              <th>
-                Category
-              </th>
-
-              <th>
-                Sub Category
-              </th>
-
-              <th class="text-end">
-                Amount
-              </th>
-
-              <th>
-                Notes
-              </th>
-
-            </tr>
-
-          </thead>
-
-
-          <tbody id="recentTable">
-
-            <tr>
-
-              <td colspan="7">
-                Loading...
-              </td>
-
-            </tr>
-
-          </tbody>
-
-        </table>
+            <option value="Transportation">
+              Transportation
+            </option>
+
+            <option value="Utilities">
+              Utilities
+            </option>
+
+            <option value="Health">
+              Health
+            </option>
+
+            <option value="Lifestyle">
+              Lifestyle
+            </option>
+
+            <option value="Entertainment">
+              Entertainment
+            </option>
+
+            <option value="Shopping">
+              Shopping
+            </option>
+
+            <option value="Subscription">
+              Subscription
+            </option>
+
+            <option value="Investment">
+              Investment
+            </option>
+
+            <option value="Savings">
+              Savings
+            </option>
+
+            <option value="Debt">
+              Debt
+            </option>
+
+            <option value="Receivable">
+              Receivable
+            </option>
+
+            <option value="Statutory">
+              Statutory
+            </option>
+
+            <option value="Charity">
+              Charity
+            </option>
+
+            <option value="Others">
+              Others
+            </option>
+
+          </select>
+
+
+          <!-- SUB CATEGORY -->
+          <input
+            list="subCategoryList"
+            type="text"
+            id="subCategory"
+            class="form-control mb-3"
+            placeholder="Sub-Category"
+            required
+          >
+
+
+          <datalist id="subCategoryList">
+
+            <!-- Income -->
+            <option value="Main Salary">
+
+            <!-- Statutory -->
+            <option value="EPF Employee">
+            <option value="PCB Tax">
+            <option value="SOCSO">
+            <option value="EIS">
+
+            <!-- Commitments -->
+            <option value="House TR2">
+            <option value="Insurance AIA">
+            <option value="Insurance TM">
+            <option value="Credit Card HSBC">
+            <option value="Credit Card CIMB">
+            <option value="Credit Card Maybank">
+            <option value="SPLater">
+
+            <!-- Investment -->
+            <option value="ASB">
+            <option value="Gold">
+
+            <!-- Savings -->
+            <option value="Emergency Fund">
+            <option value="Travel Fund">
+            <option value="Car Fund">
+            <option value="Goals">
+
+            <!-- Utilities -->
+            <option value="Indah Water">
+            <option value="Time Internet">
+            <option value="Telco Umobile">
+            <option value="DBKL Taxes">
+            <option value="TNB">
+
+            <!-- Parking -->
+            <option value="Parking VP">
+            <option value="Parking MidValley">
+
+            <!-- Family -->
+            <option value="Insurance Mama">
+            <option value="Mama Allowance">
+            <option value="Family Others">
+
+            <!-- Receivable -->
+            <option value="Debt">
+
+            <!-- Lifestyle -->
+            <option value="Groceries">
+            <option value="Coffee">
+            <option value="Breakfast">
+            <option value="Lunch">
+            <option value="Dinner">
+            <option value="Eat and Chill">
+
+            <!-- Subscription -->
+            <option value="YouTube">
+            <option value="Spotify">
+            <option value="ChatGPT">
+            <option value="iCloud">
+
+          </datalist>
+
+
+          <!-- AMOUNT -->
+          <input
+            type="number"
+            id="amount"
+            class="form-control mb-3"
+            placeholder="Amount (RM)"
+            step="0.01"
+            required
+          >
+
+
+          <!-- NOTES -->
+          <textarea
+            id="notes"
+            class="form-control mb-3"
+            placeholder="Notes"
+          ></textarea>
+
+
+          <button
+            type="submit"
+            class="btn btn-primary w-100 fw-bold"
+          >
+            Save Transaction
+          </button>
+
+        </form>
+
+
+        <p id="status"></p>
 
       </div>
 
+    </div>
 
-      <button
-        id="loadMoreBtn"
-        type="button"
-        class="btn btn-dark w-100 fw-bold"
-      >
-        Load More
-      </button>
 
+    <!-- RECENT TRANSACTIONS -->
+    <div class="card">
+
+      <div class="card-body p-4">
+
+        <h5 class="mb-3">
+          📋 Recent Transactions
+        </h5>
+
+        <div class="table-responsive">
+
+          <table
+            class="table table-hover align-middle"
+          >
+
+            <thead class="table-primary">
+
+              <tr>
+
+                <th
+                  id="dateHeader"
+                  style="cursor:pointer;"
+                >
+                  Date ↓
+                </th>
+
+                <th id="billingMonthHeader">
+                  Billing Month
+                </th>
+
+                <th>
+                  Type
+                </th>
+
+                <th>
+                  Category
+                </th>
+
+                <th>
+                  Sub Category
+                </th>
+
+                <th class="text-end">
+                  Amount
+                </th>
+
+                <th>
+                  Notes
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody id="recentTable">
+
+              <tr>
+                <td colspan="7">
+                  Loading...
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <button
+          id="loadMoreBtn"
+          type="button"
+          class="btn btn-dark w-100 fw-bold"
+        >
+          Load More
+        </button>
+
+      </div>
 
     </div>
 
   </div>
 
-
-</div>
 </div>
 
 
@@ -523,10 +526,7 @@
 
 
         <!-- EDIT BILLING MONTH -->
-        <label
-          for="editBillingMonth"
-          class="form-label"
-        >
+        <label class="form-label">
           Billing Month
         </label>
 
@@ -704,12 +704,10 @@
           class="fw-bold"
         ></p>
 
-
       </div>
 
 
       <div class="modal-footer">
-
 
         <button
           type="button"
@@ -719,7 +717,6 @@
           Delete
         </button>
 
-
         <button
           type="button"
           class="btn btn-primary"
@@ -727,7 +724,6 @@
         >
           Update
         </button>
-
 
       </div>
 
@@ -745,10 +741,8 @@ let dateSortDesc = true;
 
 let currentData = [];
 
-
 const WEB_APP_URL =
   "https://script.google.com/macros/s/AKfycbzcelyMSU0DWJjJcvc8vWjixJU7qjX3UXSOrZg-L9nIRNrymhpl7N8KisRQzaZzDZFe7g/exec";
-
 
 let currentLimit = 20;
 
@@ -767,18 +761,19 @@ document.getElementById("date").valueAsDate =
 
 
 /* =========================================================
-   BILLING MONTH FUNCTIONS
+   BILLING MONTH
 ========================================================= */
 
 /*
-Billing Month behaviour:
+Example stored value:
 
-- Automatically defaults to CURRENT calendar month.
-- Changing transaction date DOES NOT change Billing Month.
-- User can manually select another Billing Month.
-- Stores month internally as YYYY-MM.
-  Example:
-  October 2026 = 2026-10
+2026-10
+
+Desktop display:
+October 2026
+
+Mobile display:
+Oct26
 */
 
 
@@ -808,14 +803,6 @@ function monthLabel(date) {
 }
 
 
-/*
-Creates month dropdown.
-
-12 months before selected month
-+
-12 months after selected month.
-*/
-
 function populateMonthSelect(
   select,
   selectedValue,
@@ -832,6 +819,11 @@ function populateMonthSelect(
   select.innerHTML = "";
 
 
+  /*
+  Show 12 months before
+  and 12 months after.
+  */
+
   for (
     let offset = -12;
     offset <= 12;
@@ -846,22 +838,19 @@ function populateMonthSelect(
       );
 
 
-    const option =
+    select.add(
       new Option(
         monthLabel(date),
         monthKey(date)
-      );
-
-
-    select.add(option);
+      )
+    );
 
   }
 
 
   /*
-  If a saved transaction contains
-  a month outside the ±12-month range,
-  add it manually.
+  Add saved month if it falls
+  outside the current range.
   */
 
   const exists =
@@ -875,15 +864,17 @@ function populateMonthSelect(
   if (!exists) {
 
     const parts =
-      chosen.split("-");
+      chosen
+        .split("-")
+        .map(Number);
 
 
     const year =
-      Number(parts[0]);
+      parts[0];
 
 
     const month =
-      Number(parts[1]);
+      parts[1];
 
 
     if (
@@ -910,15 +901,19 @@ function populateMonthSelect(
   }
 
 
-  select.value = chosen;
+  select.value =
+    chosen;
 
 }
 
 
 
 /*
-Reset new transaction form
-to CURRENT month.
+New transaction always defaults
+to CURRENT calendar month.
+
+Changing transaction date does NOT
+automatically change Billing Month.
 */
 
 function resetBillingMonth() {
@@ -936,15 +931,12 @@ function resetBillingMonth() {
 
 
 /*
-Supports existing old spreadsheet rows.
+Supports existing spreadsheet values.
 
-If existing Month column contains:
+Examples:
+
 October
-or
 October 2026
-
-it converts internally to:
-
 2026-10
 */
 
@@ -954,7 +946,8 @@ function normalizeSavedMonth(
 ) {
 
   if (
-    typeof value === "string" &&
+    typeof value === "string"
+    &&
     /^\d{4}-\d{2}$/.test(value)
   ) {
 
@@ -1025,7 +1018,7 @@ function normalizeSavedMonth(
 
 
   /*
-  Fallback:
+  If Billing Month is missing,
   use transaction month.
   */
 
@@ -1057,17 +1050,17 @@ function normalizeSavedMonth(
 
 
 /*
-Display:
-
-2026-10
-as
-
+Desktop:
 October 2026
+
+Mobile:
+Oct26
 */
 
 function displayBillingMonth(
   value,
-  transactionDate
+  transactionDate,
+  isMobile = false
 ) {
 
   const normalized =
@@ -1091,21 +1084,90 @@ function displayBillingMonth(
     parts[1];
 
 
-  return monthLabel(
+  const date =
     new Date(
       year,
       month - 1,
       1
-    )
+    );
+
+
+  if (isMobile) {
+
+    const shortMonth =
+      date.toLocaleDateString(
+        "en-GB",
+        {
+          month: "short"
+        }
+      );
+
+
+    const shortYear =
+      String(year)
+        .slice(-2);
+
+
+    return (
+      shortMonth
+      +
+      shortYear
+    );
+
+  }
+
+
+  return date.toLocaleDateString(
+    "en-GB",
+    {
+      month: "long",
+      year: "numeric"
+    }
   );
 
 }
 
 
 
-/*
-Initial Billing Month
-*/
+/* =========================================================
+   MOBILE HEADERS
+========================================================= */
+
+function updateResponsiveLabels() {
+
+  const isMobile =
+    window.innerWidth < 768;
+
+
+  document
+    .getElementById(
+      "billingMonthHeader"
+    )
+    .innerText =
+    isMobile
+      ? "Bill"
+      : "Billing Month";
+
+}
+
+
+updateResponsiveLabels();
+
+
+window.addEventListener(
+  "resize",
+  function() {
+
+    updateResponsiveLabels();
+
+  }
+);
+
+
+
+/* =========================================================
+   INITIAL BILLING MONTH
+========================================================= */
 
 resetBillingMonth();
 
@@ -1136,7 +1198,9 @@ document.addEventListener(
 ========================================================= */
 
 document
-  .getElementById("expenseForm")
+  .getElementById(
+    "expenseForm"
+  )
   .addEventListener(
     "submit",
     async function(e) {
@@ -1150,7 +1214,9 @@ document
 
         date:
           document
-            .getElementById("date")
+            .getElementById(
+              "date"
+            )
             .value,
 
         billingMonth:
@@ -1162,7 +1228,9 @@ document
 
         type:
           document
-            .getElementById("type")
+            .getElementById(
+              "type"
+            )
             .value,
 
         category:
@@ -1197,7 +1265,9 @@ document
 
 
       document
-        .getElementById("status")
+        .getElementById(
+          "status"
+        )
         .innerText =
         "Saving...";
 
@@ -1227,7 +1297,9 @@ document
 
 
         document
-          .getElementById("status")
+          .getElementById(
+            "status"
+          )
           .innerText =
           "✅ Saved successfully.";
 
@@ -1240,15 +1312,16 @@ document
 
 
         document
-          .getElementById("date")
+          .getElementById(
+            "date"
+          )
           .valueAsDate =
           new Date();
 
 
         /*
-        After saving,
-        reset Billing Month
-        back to current month.
+        Billing Month resets
+        to current month.
         */
 
         resetBillingMonth();
@@ -1267,7 +1340,9 @@ document
 
 
         document
-          .getElementById("status")
+          .getElementById(
+            "status"
+          )
           .innerText =
           "❌ Error saving entry.";
 
@@ -1330,13 +1405,15 @@ async function loadRecentInputs() {
       await response.json();
 
 
-    currentData = data;
+    currentData =
+      data;
 
 
     sortCurrentData();
 
 
-    table.innerHTML = "";
+    table.innerHTML =
+      "";
 
 
     if (
@@ -1408,7 +1485,9 @@ async function loadRecentInputs() {
             ||
             row.month,
 
-            row.date
+            row.date,
+
+            isMobile
 
           );
 
@@ -1450,14 +1529,17 @@ async function loadRecentInputs() {
           "click",
           function() {
 
-            openEditModal(row);
+            openEditModal(
+              row
+            );
 
           }
         );
 
 
-        table.appendChild(tr);
-
+        table.appendChild(
+          tr
+        );
 
       }
     );
@@ -1567,7 +1649,7 @@ function openEditModal(row) {
 
 
   /*
-  Existing Billing Month
+  Billing Month
   */
 
   const savedMonth =
@@ -1829,7 +1911,8 @@ document
 
       const payload = {
 
-        action: "delete",
+        action:
+          "delete",
 
         id:
           document
@@ -1855,9 +1938,11 @@ document
 
         {
 
-          method: "POST",
+          method:
+            "POST",
 
-          mode: "no-cors",
+          mode:
+            "no-cors",
 
           headers: {
             "Content-Type":
@@ -1933,13 +2018,17 @@ function shortType(type) {
 
   return {
 
-    Expense: "Exp",
+    Expense:
+      "Exp",
 
-    Income: "Inc",
+    Income:
+      "Inc",
 
-    Transfer: "Tfer",
+    Transfer:
+      "Tfer",
 
-    Deduction: "Ded"
+    Deduction:
+      "Ded"
 
   }[type] || type;
 
@@ -2085,7 +2174,8 @@ onAuthStateChanged(
 
 
     if (
-      user &&
+      user
+      &&
       user.email === allowedEmail
     ) {
 
@@ -2161,7 +2251,8 @@ onAuthStateChanged(
           refreshTimer
         );
 
-        refreshTimer = null;
+        refreshTimer =
+          null;
 
       }
 
