@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Spending Tracker </title>
+  <title>Spending Tracker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,11 +11,12 @@
       background: #f5f5f5;
     }
 
- .page-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-}
+    .page-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
     .card {
       border: none;
       border-radius: 10px;
@@ -33,15 +34,16 @@
       text-align: right;
     }
 
-.table {
-  font-size: 11px;
-}
+    .table {
+      font-size: 11px;
+    }
 
-.table td,
-.table th {
-  white-space: nowrap;
-  padding: 6px;
-}
+    .table td,
+    .table th {
+      white-space: nowrap;
+      padding: 6px;
+    }
+
     tr.transaction-row {
       cursor: pointer;
     }
@@ -49,704 +51,2145 @@
 </head>
 
 <body>
-  <nav class="navbar bg-body-tertiary">
-    <div class="page-container d-flex justify-content-between align-items-center w-100">
+
+<nav class="navbar bg-body-tertiary">
+  <div class="page-container d-flex justify-content-between align-items-center w-100">
+
     <a class="navbar-brand" href="/budget/">
-      <img src="/budget/icon_budget.png"
-           alt="Logo"
-           width="auto"
-           height="24"
-           class="d-inline-block align-text-top">
+      <img
+        src="/budget/icon_budget.png"
+        alt="Logo"
+        width="auto"
+        height="24"
+        class="d-inline-block align-text-top"
+      >
       FZ Budget
     </a>
 
     <div>
-      <a href="/budget/dashboard.html" class="btn btn-outline-primary btn-sm me-2">Dashboard</a>
-      <button id="logoutBtn" class="btn btn-outline-danger btn-sm" onclick="logout()" style="display:none;">
+      <a
+        href="/budget/dashboard.html"
+        class="btn btn-outline-primary btn-sm me-2"
+      >
+        Dashboard
+      </a>
+
+      <button
+        id="logoutBtn"
+        class="btn btn-outline-danger btn-sm"
+        onclick="logout()"
+        style="display:none;"
+      >
         Logout
       </button>
     </div>
+
   </div>
 </nav>
 
+
+<!-- LOGIN -->
 <div id="loginScreen" class="tracker-container">
+
   <div class="card">
     <div class="card-body p-4 text-center">
+
       <h5 class="mb-4">FZ Spending Tracker</h5>
-      <button class="btn btn-primary w-100 fw-bold" onclick="login()">
+
+      <button
+        class="btn btn-primary w-100 fw-bold"
+        onclick="login()"
+      >
         Login with Google
       </button>
+
     </div>
   </div>
+
 </div>
 
+
+<!-- APP -->
 <div id="app" style="display:none;">
+
 <div class="page-container">
 
+
+  <!-- ADD TRANSACTION -->
   <div class="card">
+
     <div class="card-body p-4">
+
       <h5 class="mb-4">💰 Spending Tracker</h5>
 
       <form id="expenseForm">
-        <input type="date" id="date" class="form-control mb-3" required>
 
-        <select id="type" class="form-select mb-3" required>
+
+        <!-- DATE -->
+        <label class="form-label">Transaction Date</label>
+
+        <input
+          type="date"
+          id="date"
+          class="form-control mb-3"
+          required
+        >
+
+
+        <!-- BILLING MONTH -->
+        <label
+          for="billingMonth"
+          class="form-label"
+        >
+          Billing Month
+        </label>
+
+        <select
+          id="billingMonth"
+          class="form-select mb-3"
+          required
+        >
+        </select>
+
+
+        <!-- TYPE -->
+        <select
+          id="type"
+          class="form-select mb-3"
+          required
+        >
+
           <option value="">Select Type</option>
-<option value="Income">Income</option>
-<option value="Expense">Expense</option>
-<option value="Transfer">Transfer</option>
-<option value="Deduction">Deduction</option>
+
+          <option value="Income">
+            Income
+          </option>
+
+          <option value="Expense">
+            Expense
+          </option>
+
+          <option value="Transfer">
+            Transfer
+          </option>
+
+          <option value="Deduction">
+            Deduction
+          </option>
+
         </select>
 
-        <select id="category" class="form-select mb-3" required>
-<option value="">Select Category</option>
 
-<option value="Income">Income</option>
+        <!-- CATEGORY -->
+        <select
+          id="category"
+          class="form-select mb-3"
+          required
+        >
 
-<option value="Commitments">Commitments</option>
-<option value="Family">Family</option>
-<option value="Food & Beverage">Food & Beverage</option>
-<option value="Transportation">Transportation</option>
-<option value="Utilities">Utilities</option>
+          <option value="">
+            Select Category
+          </option>
 
-<option value="Health">Health</option>
-<option value="Lifestyle">Lifestyle</option>
-<option value="Entertainment">Entertainment</option>
-<option value="Shopping">Shopping</option>
+          <option value="Income">
+            Income
+          </option>
 
-<option value="Subscription">Subscription</option>
+          <option value="Commitments">
+            Commitments
+          </option>
 
-<option value="Investment">Investment</option>
-<option value="Savings">Savings</option>
-<option value="Debt">Debt</option>
+          <option value="Family">
+            Family
+          </option>
 
-<option value="Receivable">Receivable</option>
+          <option value="Food & Beverage">
+            Food & Beverage
+          </option>
 
-<option value="Statutory">Statutory</option>
+          <option value="Transportation">
+            Transportation
+          </option>
 
-<option value="Charity">Charity</option>
+          <option value="Utilities">
+            Utilities
+          </option>
 
-<option value="Others">Others</option>
+          <option value="Health">
+            Health
+          </option>
+
+          <option value="Lifestyle">
+            Lifestyle
+          </option>
+
+          <option value="Entertainment">
+            Entertainment
+          </option>
+
+          <option value="Shopping">
+            Shopping
+          </option>
+
+          <option value="Subscription">
+            Subscription
+          </option>
+
+          <option value="Investment">
+            Investment
+          </option>
+
+          <option value="Savings">
+            Savings
+          </option>
+
+          <option value="Debt">
+            Debt
+          </option>
+
+          <option value="Receivable">
+            Receivable
+          </option>
+
+          <option value="Statutory">
+            Statutory
+          </option>
+
+          <option value="Charity">
+            Charity
+          </option>
+
+          <option value="Others">
+            Others
+          </option>
+
         </select>
 
-        <!-- <input type="text" id="subCategory" class="form-control mb-3" placeholder="Sub-Category" > -->
 
-<input
-  list="subCategoryList"
-  type="text"
-  id="subCategory"
-  class="form-control mb-3"
-  placeholder="Sub-Category"
-  required>
+        <!-- SUB CATEGORY -->
+        <input
+          list="subCategoryList"
+          type="text"
+          id="subCategory"
+          class="form-control mb-3"
+          placeholder="Sub-Category"
+          required
+        >
 
-<datalist id="subCategoryList">
 
-  <!-- Income -->
-  <option value="Main Salary">
+        <datalist id="subCategoryList">
 
-  <!-- Statutory -->
-  <option value="EPF Employee">
-  <option value="PCB Tax">
-  <option value="SOCSO">
-  <option value="EIS">
+          <!-- Income -->
+          <option value="Main Salary">
 
-  <!-- Commitments -->
-  <option value="House TR2">
-  <option value="Insurance AIA">
-  <option value="Insurance TM">
-  <option value="Credit Card HSBC">
-  <option value="Credit Card CIMB">
-  <option value="Credit Card Maybank">
-  <option value="SPLater">
+          <!-- Statutory -->
+          <option value="EPF Employee">
+          <option value="PCB Tax">
+          <option value="SOCSO">
+          <option value="EIS">
 
-  <!-- Investment -->
-  <option value="ASB">
-  <option value="Gold">
+          <!-- Commitments -->
+          <option value="House TR2">
+          <option value="Insurance AIA">
+          <option value="Insurance TM">
 
-  <!-- Savings -->
-  <option value="Emergency Fund">
-  <option value="Travel Fund">
-  <option value="Car Fund">
-  <option value="Goals">
+          <option value="Credit Card HSBC">
+          <option value="Credit Card CIMB">
+          <option value="Credit Card Maybank">
 
-  <!-- Utilities -->
-  <option value="Indah Water">
-  <option value="Time Internet">
-  <option value="Telco Umobile">
-  <option value="DBKL Taxes">
-  <option value="TNB">
+          <option value="SPLater">
 
-  <!-- Parking -->
-  <option value="Parking VP">
-  <option value="Parking MidValley">
+          <!-- Investment -->
+          <option value="ASB">
+          <option value="Gold">
 
-  <!-- Family -->
-  <option value="Insurance Mama">
-  <option value="Mama Allowance">
-  <option value="Family Others">
+          <!-- Savings -->
+          <option value="Emergency Fund">
+          <option value="Travel Fund">
+          <option value="Car Fund">
+          <option value="Goals">
 
-  <!-- Receivable -->
-  <option value="Debt">
+          <!-- Utilities -->
+          <option value="Indah Water">
+          <option value="Time Internet">
+          <option value="Telco Umobile">
+          <option value="DBKL Taxes">
+          <option value="TNB">
 
-  <!-- Lifestyle -->
-  <option value="Groceries">
-  <option value="Coffee">
-  <option value="Breakfast">
-  <option value="Lunch">
-  <option value="Dinner">
-  <option value="Eat and Chill">
+          <!-- Parking -->
+          <option value="Parking VP">
+          <option value="Parking MidValley">
 
-  <!-- Subscription -->
-  <option value="YouTube">
-  <option value="Spotify">
-  <option value="ChatGPT">
-  <option value="iCloud">
+          <!-- Family -->
+          <option value="Insurance Mama">
+          <option value="Mama Allowance">
+          <option value="Family Others">
 
-</datalist>
+          <!-- Receivable -->
+          <option value="Debt">
 
-        <input type="number" id="amount" class="form-control mb-3" placeholder="Amount (RM)" step="0.01" required>
+          <!-- Lifestyle -->
+          <option value="Groceries">
+          <option value="Coffee">
+          <option value="Breakfast">
+          <option value="Lunch">
+          <option value="Dinner">
+          <option value="Eat and Chill">
 
-        <textarea id="notes" class="form-control mb-3" placeholder="Notes"></textarea>
+          <!-- Subscription -->
+          <option value="YouTube">
+          <option value="Spotify">
+          <option value="ChatGPT">
+          <option value="iCloud">
 
-        <button type="submit" class="btn btn-primary w-100 fw-bold">
+        </datalist>
+
+
+        <!-- AMOUNT -->
+        <input
+          type="number"
+          id="amount"
+          class="form-control mb-3"
+          placeholder="Amount (RM)"
+          step="0.01"
+          required
+        >
+
+
+        <!-- NOTES -->
+        <textarea
+          id="notes"
+          class="form-control mb-3"
+          placeholder="Notes"
+        ></textarea>
+
+
+        <button
+          type="submit"
+          class="btn btn-primary w-100 fw-bold"
+        >
           Save Transaction
         </button>
+
+
       </form>
 
+
       <p id="status"></p>
+
+
     </div>
+
   </div>
 
+
+  <!-- RECENT TRANSACTIONS -->
   <div class="card">
+
     <div class="card-body p-4">
-      <h5 class="mb-3">📋 Recent Transactions</h5>
+
+      <h5 class="mb-3">
+        📋 Recent Transactions
+      </h5>
+
 
       <div class="table-responsive">
-        <table class="table table-hover align-middle">
+
+        <table
+          class="table table-hover align-middle"
+        >
+
           <thead class="table-primary">
+
             <tr>
-              <th id="dateHeader" style="cursor:pointer;">
+
+              <th
+                id="dateHeader"
+                style="cursor:pointer;"
+              >
                 Date ↓
               </th>
-              <th>Type</th>
-              <th>Category</th>
-              <th>Sub Category</th>
-              <th class="text-end">Amount</th>
-              <th>Notes</th>
+
+              <th>
+                Billing Month
+              </th>
+
+              <th>
+                Type
+              </th>
+
+              <th>
+                Category
+              </th>
+
+              <th>
+                Sub Category
+              </th>
+
+              <th class="text-end">
+                Amount
+              </th>
+
+              <th>
+                Notes
+              </th>
+
             </tr>
+
           </thead>
 
+
           <tbody id="recentTable">
+
             <tr>
-              <td colspan="6">Loading...</td>
+
+              <td colspan="7">
+                Loading...
+              </td>
+
             </tr>
+
           </tbody>
+
         </table>
+
       </div>
 
-      <button id="loadMoreBtn" type="button" class="btn btn-dark w-100 fw-bold">
+
+      <button
+        id="loadMoreBtn"
+        type="button"
+        class="btn btn-dark w-100 fw-bold"
+      >
         Load More
       </button>
+
+
     </div>
+
   </div>
 
+
 </div>
 </div>
 
-<!-- Edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1">
+
+<!-- EDIT MODAL -->
+<div
+  class="modal fade"
+  id="editModal"
+  tabindex="-1"
+>
+
   <div class="modal-dialog">
+
     <div class="modal-content">
 
+
       <div class="modal-header">
-        <h5 class="modal-title">Edit Transaction</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+        <h5 class="modal-title">
+          Edit Transaction
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+
       </div>
+
 
       <div class="modal-body">
 
-        <input type="hidden" id="editId">
 
-        <label class="form-label">Date</label>
-        <input type="date" id="editDate" class="form-control mb-3">
+        <input
+          type="hidden"
+          id="editId"
+        >
 
-        <label class="form-label">Type</label>
-        <select id="editType" class="form-select mb-3">
 
-      <option value="">Select Type</option>
-<option value="Income">Income</option>
-<option value="Expense">Expense</option>
-<option value="Transfer">Transfer</option>
-<option value="Deduction">Deduction</option>
+        <!-- EDIT DATE -->
+        <label class="form-label">
+          Date
+        </label>
 
+        <input
+          type="date"
+          id="editDate"
+          class="form-control mb-3"
+        >
+
+
+        <!-- EDIT BILLING MONTH -->
+        <label
+          for="editBillingMonth"
+          class="form-label"
+        >
+          Billing Month
+        </label>
+
+        <select
+          id="editBillingMonth"
+          class="form-select mb-3"
+          required
+        >
+        </select>
+
+
+        <!-- EDIT TYPE -->
+        <label class="form-label">
+          Type
+        </label>
+
+        <select
+          id="editType"
+          class="form-select mb-3"
+        >
+
+          <option value="">
+            Select Type
+          </option>
+
+          <option value="Income">
+            Income
+          </option>
+
+          <option value="Expense">
+            Expense
+          </option>
+
+          <option value="Transfer">
+            Transfer
+          </option>
+
+          <option value="Deduction">
+            Deduction
+          </option>
 
         </select>
 
-        <label class="form-label">Category</label>
-        <select id="editCategory" class="form-select mb-3">
 
-<option value="">Select Category</option>
+        <!-- EDIT CATEGORY -->
+        <label class="form-label">
+          Category
+        </label>
 
-<option value="Income">Income</option>
+        <select
+          id="editCategory"
+          class="form-select mb-3"
+        >
 
-<option value="Commitments">Commitments</option>
-<option value="Family">Family</option>
-<option value="Food & Beverage">Food & Beverage</option>
-<option value="Transportation">Transportation</option>
-<option value="Utilities">Utilities</option>
+          <option value="">
+            Select Category
+          </option>
 
-<option value="Health">Health</option>
-<option value="Lifestyle">Lifestyle</option>
-<option value="Entertainment">Entertainment</option>
-<option value="Shopping">Shopping</option>
+          <option value="Income">
+            Income
+          </option>
 
-<option value="Subscription">Subscription</option>
+          <option value="Commitments">
+            Commitments
+          </option>
 
-<option value="Investment">Investment</option>
-<option value="Savings">Savings</option>
-<option value="Debt">Debt</option>
+          <option value="Family">
+            Family
+          </option>
 
-<option value="Receivable">Receivable</option>
+          <option value="Food & Beverage">
+            Food & Beverage
+          </option>
 
-<option value="Statutory">Statutory</option>
+          <option value="Transportation">
+            Transportation
+          </option>
 
-<option value="Charity">Charity</option>
+          <option value="Utilities">
+            Utilities
+          </option>
 
-<option value="Others">Others</option>
+          <option value="Health">
+            Health
+          </option>
 
+          <option value="Lifestyle">
+            Lifestyle
+          </option>
 
+          <option value="Entertainment">
+            Entertainment
+          </option>
+
+          <option value="Shopping">
+            Shopping
+          </option>
+
+          <option value="Subscription">
+            Subscription
+          </option>
+
+          <option value="Investment">
+            Investment
+          </option>
+
+          <option value="Savings">
+            Savings
+          </option>
+
+          <option value="Debt">
+            Debt
+          </option>
+
+          <option value="Receivable">
+            Receivable
+          </option>
+
+          <option value="Statutory">
+            Statutory
+          </option>
+
+          <option value="Charity">
+            Charity
+          </option>
+
+          <option value="Others">
+            Others
+          </option>
 
         </select>
 
-        <label class="form-label">Sub Category</label>
-        
 
-<input
-  list="subCategoryList"
-  type="text"
-  id="editSubCategory"
-  class="form-control mb-3"
-  placeholder="Sub-Category"
-  required>
+        <!-- EDIT SUB CATEGORY -->
+        <label class="form-label">
+          Sub Category
+        </label>
 
-<datalist id="subCategoryList">
-
-  <!-- Income -->
-  <option value="Main Salary">
-
-  <!-- Statutory -->
-  <option value="EPF Employee">
-  <option value="PCB Tax">
-  <option value="SOCSO">
-  <option value="EIS">
-
-  <!-- Commitments -->
-  <option value="House TR2">
-  <option value="Insurance AIA">
-  <option value="Insurance TM">
-  <option value="Credit Card HSBC">
-  <option value="Credit Card CIMB">
-  <option value="Credit Card Maybank">
-  <option value="SPLater">
-
-  <!-- Investment -->
-  <option value="ASB">
-  <option value="Gold">
-
-  <!-- Savings -->
-  <option value="Emergency Fund">
-  <option value="Travel Fund">
-  <option value="Car Fund">
-  <option value="Goals">
-
-  <!-- Utilities -->
-  <option value="Indah Water">
-  <option value="Time Internet">
-  <option value="Telco Umobile">
-  <option value="DBKL Taxes">
-  <option value="TNB">
-
-  <!-- Parking -->
-  <option value="Parking VP">
-  <option value="Parking MidValley">
-
-  <!-- Family -->
-  <option value="Insurance Mama">
-  <option value="Mama Allowance">
-  <option value="Family Others">
-
-  <!-- Receivable -->
-  <option value="Debt">
-
-  <!-- Lifestyle -->
-  <option value="Groceries">
-  <option value="Coffee">
-  <option value="Breakfast">
-  <option value="Lunch">
-  <option value="Dinner">
-  <option value="Eat and Chill">
-
-  <!-- Subscription -->
-  <option value="YouTube">
-  <option value="Spotify">
-  <option value="ChatGPT">
-  <option value="iCloud">
-
-</datalist>
+        <input
+          list="subCategoryList"
+          type="text"
+          id="editSubCategory"
+          class="form-control mb-3"
+          placeholder="Sub-Category"
+          required
+        >
 
 
+        <!-- EDIT AMOUNT -->
+        <label class="form-label">
+          Amount
+        </label>
 
-        <label class="form-label">Amount</label>
-        <input type="number" id="editAmount" class="form-control mb-3" step="0.01">
+        <input
+          type="number"
+          id="editAmount"
+          class="form-control mb-3"
+          step="0.01"
+        >
 
-        <label class="form-label">Notes</label>
-        <textarea id="editNotes" class="form-control mb-3"></textarea>
 
-        <p id="editStatus" class="fw-bold"></p>
+        <!-- EDIT NOTES -->
+        <label class="form-label">
+          Notes
+        </label>
+
+        <textarea
+          id="editNotes"
+          class="form-control mb-3"
+        ></textarea>
+
+
+        <p
+          id="editStatus"
+          class="fw-bold"
+        ></p>
+
 
       </div>
 
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="deleteBtn">
+
+
+        <button
+          type="button"
+          class="btn btn-danger"
+          id="deleteBtn"
+        >
           Delete
         </button>
 
-        <button type="button" class="btn btn-primary" id="updateBtn">
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="updateBtn"
+        >
           Update
         </button>
+
+
       </div>
 
+
     </div>
+
   </div>
+
 </div>
 
+
 <script>
+
 let dateSortDesc = true;
+
 let currentData = [];
 
 
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzcelyMSU0DWJjJcvc8vWjixJU7qjX3UXSOrZg-L9nIRNrymhpl7N8KisRQzaZzDZFe7g/exec";
-
-  let currentLimit = 20;
-  let editModal;
-
-  document.getElementById("date").valueAsDate = new Date();
-
-  document.addEventListener("DOMContentLoaded", function() {
-    editModal = new bootstrap.Modal(document.getElementById("editModal"));
-  });
-
-  document.getElementById("expenseForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    const payload = {
-      action: "create",
-      date: document.getElementById("date").value,
-      type: document.getElementById("type").value,
-      category: document.getElementById("category").value,
-      subCategory: document.getElementById("subCategory").value,
-      amount: document.getElementById("amount").value,
-      notes: document.getElementById("notes").value
-    };
-
-    document.getElementById("status").innerText = "Saving...";
-
-    try {
-      await fetch(WEB_APP_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
-      });
-
-      document.getElementById("status").innerText = "✅ Saved successfully.";
-      document.getElementById("expenseForm").reset();
-      document.getElementById("date").valueAsDate = new Date();
-
-      currentLimit = 20;
-      setTimeout(loadRecentInputs, 1500);
-
-    } catch (error) {
-      document.getElementById("status").innerText = "❌ Error saving entry.";
-    }
-  });
-
-  document.getElementById("loadMoreBtn").addEventListener("click", function() {
-    currentLimit += 20;
-    loadRecentInputs();
-  });
-
-  async function loadRecentInputs() {
-    const table = document.getElementById("recentTable");
-
-    try {
-      const response = await fetch(
-        WEB_APP_URL +
-        "?limit=" +
-        currentLimit +
-        "&t=" +
-        Date.now()
-      );
-
-      const data = await response.json();
-
-currentData = data;
-sortCurrentData();
-function sortCurrentData() {
-  currentData.sort((a, b) => {
-    return dateSortDesc
-      ? new Date(b.date) - new Date(a.date)
-      : new Date(a.date) - new Date(b.date);
-  });
-}
-
-document
-  .getElementById("dateHeader")
-  .addEventListener("click", function () {
-
-    dateSortDesc = !dateSortDesc;
-
-    this.innerHTML = dateSortDesc
-      ? "Date ↓"
-      : "Date ↑";
-
-    loadRecentInputs();
-});
+const WEB_APP_URL =
+  "https://script.google.com/macros/s/AKfycbzcelyMSU0DWJjJcvc8vWjixJU7qjX3UXSOrZg-L9nIRNrymhpl7N8KisRQzaZzDZFe7g/exec";
 
 
-      table.innerHTML = "";
+let currentLimit = 20;
 
-      if (!Array.isArray(data) || data.length === 0) {
-        table.innerHTML = "<tr><td colspan='6'>No recent transactions found.</td></tr>";
-        return;
-      }
-
-data.forEach(row => {
-  const tr = document.createElement("tr");
-  tr.className = "transaction-row";
-
-  const isMobile = window.innerWidth < 768;
-
-  const displayDate = isMobile
-    ? formatShortDate(row.date)
-    : row.date;
-
-  const displayType = isMobile
-    ? shortType(row.type)
-    : row.type;
-
-  const displayCategory = isMobile
-    ? shortCategory(row.category)
-    : row.category;
-
-  //RM remove small
-    const displayAmount = isMobile
-    ? row.amount
-    : `RM ${row.amount}`;
-
-
-  tr.innerHTML = `
-    <td>${displayDate || ""}</td>
-    <td>${displayType || ""}</td>
-    <td>${displayCategory || ""}</td>
-    <td>${row.subCategory || ""}</td>
-    <td class="amount">${displayAmount || ""}</td>
-    <td>${row.notes || ""}</td>
-  `;
-
-  tr.addEventListener("click", function() {
-    openEditModal(row);
-  });
-
-  table.appendChild(tr);
-});
-
-      document.getElementById("loadMoreBtn").style.display =
-        data.length < currentLimit ? "none" : "block";
-
-    } catch (error) {
-      table.innerHTML = "<tr><td colspan='6'>Unable to load recent transactions.</td></tr>";
-    }
-  }
-
-  function openEditModal(row) {
-    document.getElementById("editId").value = row.id || "";
-    document.getElementById("editDate").value = row.date || "";
-    document.getElementById("editType").value = row.type || "";
-    document.getElementById("editCategory").value = row.category || "";
-    document.getElementById("editSubCategory").value = row.subCategory || "";
-    // document.getElementById("editAmount").value = row.amount || "";
-    document.getElementById("editAmount").value =
-  (row.amount || "").replace(/,/g, "");
-    document.getElementById("editNotes").value = row.notes || "";
-    document.getElementById("editStatus").innerText = "";
-
-    editModal.show();
-  }
-
-  document.getElementById("updateBtn").addEventListener("click", async function() {
-    const payload = {
-      action: "update",
-      id: document.getElementById("editId").value,
-      date: document.getElementById("editDate").value,
-      type: document.getElementById("editType").value,
-      category: document.getElementById("editCategory").value,
-      subCategory: document.getElementById("editSubCategory").value,
-      amount: document.getElementById("editAmount").value,
-      notes: document.getElementById("editNotes").value
-    };
-
-    document.getElementById("editStatus").innerText = "Updating...";
-
-    await fetch(WEB_APP_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    document.getElementById("editStatus").innerText = "✅ Updated.";
-    setTimeout(function() {
-      editModal.hide();
-      loadRecentInputs();
-    }, 800);
-  });
-
-  document.getElementById("deleteBtn").addEventListener("click", async function() {
-    const confirmDelete = confirm("Delete this transaction?");
-
-    if (!confirmDelete) return;
-
-    const payload = {
-      action: "delete",
-      id: document.getElementById("editId").value
-    };
-
-    document.getElementById("editStatus").innerText = "Deleting...";
-
-    await fetch(WEB_APP_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    document.getElementById("editStatus").innerText = "✅ Deleted.";
-    setTimeout(function() {
-      editModal.hide();
-      loadRecentInputs();
-    }, 800);
-  });
-
-//small screen
-
-  function formatShortDate(dateValue) {
-  if (!dateValue) return "";
-
-  return new Date(dateValue).toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "short"
-  });
-}
-
-function shortType(type) {
-  return {
-    Expense: "Exp",
-    Income: "Inc",
-    Transfer: "Tfer",
-    Deduction: "Ded"
-  }[type] || type;
-}
-
-function shortCategory(category) {
-  return {
-    "Food & Beverage": "Food",
-    "Transportation": "Transport",
-    "Entertainment": "Fun",
-    "Commitments": "Commit",
-    "Subscription": "Sub",
-    "Investment": "Invest"
-  }[category] || category;
-}
-
+let editModal;
 
 let refreshTimer = null;
 
 
+/* =========================================================
+   DEFAULT DATE
+========================================================= */
+
+document.getElementById("date").valueAsDate =
+  new Date();
+
+
+
+/* =========================================================
+   BILLING MONTH FUNCTIONS
+========================================================= */
+
+/*
+Billing Month behaviour:
+
+- Automatically defaults to CURRENT calendar month.
+- Changing transaction date DOES NOT change Billing Month.
+- User can manually select another Billing Month.
+- Stores month internally as YYYY-MM.
+  Example:
+  October 2026 = 2026-10
+*/
+
+
+function monthKey(date) {
+
+  return (
+    date.getFullYear()
+    + "-"
+    + String(
+        date.getMonth() + 1
+      ).padStart(2, "0")
+  );
+
+}
+
+
+function monthLabel(date) {
+
+  return date.toLocaleDateString(
+    "en-GB",
+    {
+      month: "long",
+      year: "numeric"
+    }
+  );
+
+}
+
+
+/*
+Creates month dropdown.
+
+12 months before selected month
++
+12 months after selected month.
+*/
+
+function populateMonthSelect(
+  select,
+  selectedValue,
+  referenceDate
+) {
+
+  const reference =
+    referenceDate || new Date();
+
+  const chosen =
+    selectedValue || monthKey(new Date());
+
+
+  select.innerHTML = "";
+
+
+  for (
+    let offset = -12;
+    offset <= 12;
+    offset++
+  ) {
+
+    const date =
+      new Date(
+        reference.getFullYear(),
+        reference.getMonth() + offset,
+        1
+      );
+
+
+    const option =
+      new Option(
+        monthLabel(date),
+        monthKey(date)
+      );
+
+
+    select.add(option);
+
+  }
+
+
+  /*
+  If a saved transaction contains
+  a month outside the ±12-month range,
+  add it manually.
+  */
+
+  const exists =
+    [...select.options]
+      .some(
+        option =>
+          option.value === chosen
+      );
+
+
+  if (!exists) {
+
+    const parts =
+      chosen.split("-");
+
+
+    const year =
+      Number(parts[0]);
+
+
+    const month =
+      Number(parts[1]);
+
+
+    if (
+      year &&
+      month >= 1 &&
+      month <= 12
+    ) {
+
+      select.add(
+        new Option(
+          monthLabel(
+            new Date(
+              year,
+              month - 1,
+              1
+            )
+          ),
+          chosen
+        )
+      );
+
+    }
+
+  }
+
+
+  select.value = chosen;
+
+}
+
+
+
+/*
+Reset new transaction form
+to CURRENT month.
+*/
+
+function resetBillingMonth() {
+
+  populateMonthSelect(
+    document.getElementById(
+      "billingMonth"
+    ),
+    monthKey(new Date()),
+    new Date()
+  );
+
+}
+
+
+
+/*
+Supports existing old spreadsheet rows.
+
+If existing Month column contains:
+October
+or
+October 2026
+
+it converts internally to:
+
+2026-10
+*/
+
+function normalizeSavedMonth(
+  value,
+  transactionDate
+) {
+
+  if (
+    typeof value === "string" &&
+    /^\d{4}-\d{2}$/.test(value)
+  ) {
+
+    return value;
+
+  }
+
+
+  const monthNames = [
+
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december"
+
+  ];
+
+
+  const match =
+    String(value || "")
+      .trim()
+      .match(
+        /^([a-z]+)(?:\s+(\d{4}))?$/i
+      );
+
+
+  if (match) {
+
+    const month =
+      monthNames.indexOf(
+        match[1].toLowerCase()
+      );
+
+
+    if (month !== -1) {
+
+      const year =
+        Number(match[2])
+        ||
+        Number(
+          String(
+            transactionDate || ""
+          ).slice(0, 4)
+        )
+        ||
+        new Date().getFullYear();
+
+
+      return monthKey(
+        new Date(
+          year,
+          month,
+          1
+        )
+      );
+
+    }
+
+  }
+
+
+  /*
+  Fallback:
+  use transaction month.
+  */
+
+  const transactionString =
+    String(
+      transactionDate || ""
+    );
+
+
+  if (
+    /^\d{4}-\d{2}/
+      .test(transactionString)
+  ) {
+
+    return transactionString.slice(
+      0,
+      7
+    );
+
+  }
+
+
+  return monthKey(
+    new Date()
+  );
+
+}
+
+
+
+/*
+Display:
+
+2026-10
+as
+
+October 2026
+*/
+
+function displayBillingMonth(
+  value,
+  transactionDate
+) {
+
+  const normalized =
+    normalizeSavedMonth(
+      value,
+      transactionDate
+    );
+
+
+  const parts =
+    normalized
+      .split("-")
+      .map(Number);
+
+
+  const year =
+    parts[0];
+
+
+  const month =
+    parts[1];
+
+
+  return monthLabel(
+    new Date(
+      year,
+      month - 1,
+      1
+    )
+  );
+
+}
+
+
+
+/*
+Initial Billing Month
+*/
+
+resetBillingMonth();
+
+
+
+/* =========================================================
+   BOOTSTRAP MODAL
+========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+    editModal =
+      new bootstrap.Modal(
+        document.getElementById(
+          "editModal"
+        )
+      );
+
+  }
+);
+
+
+
+/* =========================================================
+   CREATE TRANSACTION
+========================================================= */
+
+document
+  .getElementById("expenseForm")
+  .addEventListener(
+    "submit",
+    async function(e) {
+
+      e.preventDefault();
+
+
+      const payload = {
+
+        action: "create",
+
+        date:
+          document
+            .getElementById("date")
+            .value,
+
+        billingMonth:
+          document
+            .getElementById(
+              "billingMonth"
+            )
+            .value,
+
+        type:
+          document
+            .getElementById("type")
+            .value,
+
+        category:
+          document
+            .getElementById(
+              "category"
+            )
+            .value,
+
+        subCategory:
+          document
+            .getElementById(
+              "subCategory"
+            )
+            .value,
+
+        amount:
+          document
+            .getElementById(
+              "amount"
+            )
+            .value,
+
+        notes:
+          document
+            .getElementById(
+              "notes"
+            )
+            .value
+
+      };
+
+
+      document
+        .getElementById("status")
+        .innerText =
+        "Saving...";
+
+
+      try {
+
+        await fetch(
+          WEB_APP_URL,
+          {
+
+            method: "POST",
+
+            mode: "no-cors",
+
+            headers: {
+              "Content-Type":
+                "text/plain;charset=utf-8"
+            },
+
+            body:
+              JSON.stringify(
+                payload
+              )
+
+          }
+        );
+
+
+        document
+          .getElementById("status")
+          .innerText =
+          "✅ Saved successfully.";
+
+
+        document
+          .getElementById(
+            "expenseForm"
+          )
+          .reset();
+
+
+        document
+          .getElementById("date")
+          .valueAsDate =
+          new Date();
+
+
+        /*
+        After saving,
+        reset Billing Month
+        back to current month.
+        */
+
+        resetBillingMonth();
+
+
+        currentLimit = 20;
+
+
+        setTimeout(
+          loadRecentInputs,
+          1500
+        );
+
+
+      } catch (error) {
+
+
+        document
+          .getElementById("status")
+          .innerText =
+          "❌ Error saving entry.";
+
+
+      }
+
+    }
+  );
+
+
+
+/* =========================================================
+   LOAD MORE
+========================================================= */
+
+document
+  .getElementById(
+    "loadMoreBtn"
+  )
+  .addEventListener(
+    "click",
+    function() {
+
+      currentLimit += 20;
+
+      loadRecentInputs();
+
+    }
+  );
+
+
+
+/* =========================================================
+   LOAD RECENT TRANSACTIONS
+========================================================= */
+
+async function loadRecentInputs() {
+
+  const table =
+    document.getElementById(
+      "recentTable"
+    );
+
+
+  try {
+
+    const response =
+      await fetch(
+
+        WEB_APP_URL
+        + "?limit="
+        + currentLimit
+        + "&t="
+        + Date.now()
+
+      );
+
+
+    const data =
+      await response.json();
+
+
+    currentData = data;
+
+
+    sortCurrentData();
+
+
+    table.innerHTML = "";
+
+
+    if (
+      !Array.isArray(data)
+      ||
+      data.length === 0
+    ) {
+
+      table.innerHTML =
+        "<tr><td colspan='7'>No recent transactions found.</td></tr>";
+
+      return;
+
+    }
+
+
+    currentData.forEach(
+      row => {
+
+
+        const tr =
+          document.createElement(
+            "tr"
+          );
+
+
+        tr.className =
+          "transaction-row";
+
+
+        const isMobile =
+          window.innerWidth < 768;
+
+
+        const displayDate =
+          isMobile
+            ? formatShortDate(
+                row.date
+              )
+            : row.date;
+
+
+        const displayType =
+          isMobile
+            ? shortType(
+                row.type
+              )
+            : row.type;
+
+
+        const displayCategory =
+          isMobile
+            ? shortCategory(
+                row.category
+              )
+            : row.category;
+
+
+        const displayAmount =
+          isMobile
+            ? row.amount
+            : `RM ${row.amount}`;
+
+
+        const billingMonthDisplay =
+          displayBillingMonth(
+
+            row.billingMonth
+            ||
+            row.month,
+
+            row.date
+
+          );
+
+
+        tr.innerHTML = `
+
+          <td>
+            ${displayDate || ""}
+          </td>
+
+          <td>
+            ${billingMonthDisplay || ""}
+          </td>
+
+          <td>
+            ${displayType || ""}
+          </td>
+
+          <td>
+            ${displayCategory || ""}
+          </td>
+
+          <td>
+            ${row.subCategory || ""}
+          </td>
+
+          <td class="amount">
+            ${displayAmount || ""}
+          </td>
+
+          <td>
+            ${row.notes || ""}
+          </td>
+
+        `;
+
+
+        tr.addEventListener(
+          "click",
+          function() {
+
+            openEditModal(row);
+
+          }
+        );
+
+
+        table.appendChild(tr);
+
+
+      }
+    );
+
+
+    document
+      .getElementById(
+        "loadMoreBtn"
+      )
+      .style.display =
+
+        data.length
+        <
+        currentLimit
+
+          ? "none"
+          : "block";
+
+
+  } catch (error) {
+
+
+    table.innerHTML =
+      "<tr><td colspan='7'>Unable to load recent transactions.</td></tr>";
+
+
+  }
+
+}
+
+
+
+/* =========================================================
+   SORT TRANSACTIONS
+========================================================= */
+
+function sortCurrentData() {
+
+  currentData.sort(
+    (a, b) => {
+
+      return dateSortDesc
+
+        ? new Date(b.date)
+          -
+          new Date(a.date)
+
+        : new Date(a.date)
+          -
+          new Date(b.date);
+
+    }
+  );
+
+}
+
+
+
+document
+  .getElementById(
+    "dateHeader"
+  )
+  .addEventListener(
+    "click",
+    function() {
+
+
+      dateSortDesc =
+        !dateSortDesc;
+
+
+      this.innerHTML =
+        dateSortDesc
+          ? "Date ↓"
+          : "Date ↑";
+
+
+      loadRecentInputs();
+
+
+    }
+  );
+
+
+
+/* =========================================================
+   OPEN EDIT MODAL
+========================================================= */
+
+function openEditModal(row) {
+
+
+  document
+    .getElementById(
+      "editId"
+    )
+    .value =
+    row.id || "";
+
+
+  document
+    .getElementById(
+      "editDate"
+    )
+    .value =
+    row.date || "";
+
+
+  /*
+  Existing Billing Month
+  */
+
+  const savedMonth =
+    normalizeSavedMonth(
+
+      row.billingMonth
+      ||
+      row.month,
+
+      row.date
+
+    );
+
+
+  const parts =
+    savedMonth
+      .split("-")
+      .map(Number);
+
+
+  const savedYear =
+    parts[0];
+
+
+  const savedMonthNumber =
+    parts[1];
+
+
+  populateMonthSelect(
+
+    document.getElementById(
+      "editBillingMonth"
+    ),
+
+    savedMonth,
+
+    new Date(
+      savedYear,
+      savedMonthNumber - 1,
+      1
+    )
+
+  );
+
+
+  document
+    .getElementById(
+      "editType"
+    )
+    .value =
+    row.type || "";
+
+
+  document
+    .getElementById(
+      "editCategory"
+    )
+    .value =
+    row.category || "";
+
+
+  document
+    .getElementById(
+      "editSubCategory"
+    )
+    .value =
+    row.subCategory || "";
+
+
+  document
+    .getElementById(
+      "editAmount"
+    )
+    .value =
+    (row.amount || "")
+      .replace(/,/g, "");
+
+
+  document
+    .getElementById(
+      "editNotes"
+    )
+    .value =
+    row.notes || "";
+
+
+  document
+    .getElementById(
+      "editStatus"
+    )
+    .innerText =
+    "";
+
+
+  editModal.show();
+
+
+}
+
+
+
+/* =========================================================
+   UPDATE TRANSACTION
+========================================================= */
+
+document
+  .getElementById(
+    "updateBtn"
+  )
+  .addEventListener(
+    "click",
+    async function() {
+
+
+      const payload = {
+
+        action: "update",
+
+        id:
+          document
+            .getElementById(
+              "editId"
+            )
+            .value,
+
+        date:
+          document
+            .getElementById(
+              "editDate"
+            )
+            .value,
+
+        billingMonth:
+          document
+            .getElementById(
+              "editBillingMonth"
+            )
+            .value,
+
+        type:
+          document
+            .getElementById(
+              "editType"
+            )
+            .value,
+
+        category:
+          document
+            .getElementById(
+              "editCategory"
+            )
+            .value,
+
+        subCategory:
+          document
+            .getElementById(
+              "editSubCategory"
+            )
+            .value,
+
+        amount:
+          document
+            .getElementById(
+              "editAmount"
+            )
+            .value,
+
+        notes:
+          document
+            .getElementById(
+              "editNotes"
+            )
+            .value
+
+      };
+
+
+      document
+        .getElementById(
+          "editStatus"
+        )
+        .innerText =
+        "Updating...";
+
+
+      await fetch(
+
+        WEB_APP_URL,
+
+        {
+
+          method: "POST",
+
+          mode: "no-cors",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:
+            JSON.stringify(
+              payload
+            )
+
+        }
+
+      );
+
+
+      document
+        .getElementById(
+          "editStatus"
+        )
+        .innerText =
+        "✅ Updated.";
+
+
+      setTimeout(
+        function() {
+
+          editModal.hide();
+
+          loadRecentInputs();
+
+        },
+        800
+      );
+
+
+    }
+  );
+
+
+
+/* =========================================================
+   DELETE TRANSACTION
+========================================================= */
+
+document
+  .getElementById(
+    "deleteBtn"
+  )
+  .addEventListener(
+    "click",
+    async function() {
+
+
+      const confirmDelete =
+        confirm(
+          "Delete this transaction?"
+        );
+
+
+      if (!confirmDelete) {
+        return;
+      }
+
+
+      const payload = {
+
+        action: "delete",
+
+        id:
+          document
+            .getElementById(
+              "editId"
+            )
+            .value
+
+      };
+
+
+      document
+        .getElementById(
+          "editStatus"
+        )
+        .innerText =
+        "Deleting...";
+
+
+      await fetch(
+
+        WEB_APP_URL,
+
+        {
+
+          method: "POST",
+
+          mode: "no-cors",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:
+            JSON.stringify(
+              payload
+            )
+
+        }
+
+      );
+
+
+      document
+        .getElementById(
+          "editStatus"
+        )
+        .innerText =
+        "✅ Deleted.";
+
+
+      setTimeout(
+        function() {
+
+          editModal.hide();
+
+          loadRecentInputs();
+
+        },
+        800
+      );
+
+
+    }
+  );
+
+
+
+/* =========================================================
+   MOBILE DISPLAY
+========================================================= */
+
+function formatShortDate(
+  dateValue
+) {
+
+  if (!dateValue) {
+    return "";
+  }
+
+
+  return new Date(
+    dateValue
+  ).toLocaleDateString(
+
+    "en-GB",
+
+    {
+      day: "2-digit",
+      month: "short"
+    }
+
+  );
+
+}
+
+
+
+function shortType(type) {
+
+  return {
+
+    Expense: "Exp",
+
+    Income: "Inc",
+
+    Transfer: "Tfer",
+
+    Deduction: "Ded"
+
+  }[type] || type;
+
+}
+
+
+
+function shortCategory(
+  category
+) {
+
+  return {
+
+    "Food & Beverage":
+      "Food",
+
+    "Transportation":
+      "Transport",
+
+    "Entertainment":
+      "Fun",
+
+    "Commitments":
+      "Commit",
+
+    "Subscription":
+      "Sub",
+
+    "Investment":
+      "Invest"
+
+  }[category] || category;
+
+}
 
 </script>
 
+
+<!-- FIREBASE LOGIN -->
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+
   getAuth,
+
   GoogleAuthProvider,
+
   signInWithPopup,
+
   signOut,
+
   onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDLsYGSytzUpaC6-it-ZtDq9eAYNAIqZQY",
-  authDomain: "spendingtracker-214d4.firebaseapp.com",
-  projectId: "spendingtracker-214d4",
-  storageBucket: "spendingtracker-214d4.firebasestorage.app",
-  messagingSenderId: "1001402393044",
-  appId: "1:1001402393044:web:f9fafee35d2be947757641",
-  measurementId: "G-PS4H5GM81T"
+
+  apiKey:
+    "AIzaSyDLsYGSytzUpaC6-it-ZtDq9eAYNAIqZQY",
+
+  authDomain:
+    "spendingtracker-214d4.firebaseapp.com",
+
+  projectId:
+    "spendingtracker-214d4",
+
+  storageBucket:
+    "spendingtracker-214d4.firebasestorage.app",
+
+  messagingSenderId:
+    "1001402393044",
+
+  appId:
+    "1:1001402393044:web:f9fafee35d2be947757641",
+
+  measurementId:
+    "G-PS4H5GM81T"
+
 };
 
-const allowedEmail = "fakhrulzakry@gmail.com";
 
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
-const provider = new GoogleAuthProvider();
 
-window.login = function () {
-  signInWithPopup(auth, provider);
-};
+const allowedEmail =
+  "fakhrulzakry@gmail.com";
 
-window.logout = function () {
-  signOut(auth);
-};
 
-onAuthStateChanged(auth, function(user) {
-  if (user && user.email === allowedEmail) {
-    document.getElementById("loginScreen").style.display = "none";
-    document.getElementById("app").style.display = "block";
-    document.getElementById("logoutBtn").style.display = "block";
+const firebaseApp =
+  initializeApp(
+    firebaseConfig
+  );
 
-    loadRecentInputs();
 
-    if (!refreshTimer) {
-      refreshTimer = setInterval(loadRecentInputs, 10000);
+const auth =
+  getAuth(
+    firebaseApp
+  );
+
+
+const provider =
+  new GoogleAuthProvider();
+
+
+
+window.login =
+  function() {
+
+    signInWithPopup(
+      auth,
+      provider
+    );
+
+  };
+
+
+
+window.logout =
+  function() {
+
+    signOut(
+      auth
+    );
+
+  };
+
+
+
+onAuthStateChanged(
+
+  auth,
+
+  function(user) {
+
+
+    if (
+      user &&
+      user.email === allowedEmail
+    ) {
+
+
+      document
+        .getElementById(
+          "loginScreen"
+        )
+        .style.display =
+        "none";
+
+
+      document
+        .getElementById(
+          "app"
+        )
+        .style.display =
+        "block";
+
+
+      document
+        .getElementById(
+          "logoutBtn"
+        )
+        .style.display =
+        "block";
+
+
+      loadRecentInputs();
+
+
+      if (!refreshTimer) {
+
+        refreshTimer =
+          setInterval(
+            loadRecentInputs,
+            10000
+          );
+
+      }
+
+
+    } else {
+
+
+      document
+        .getElementById(
+          "loginScreen"
+        )
+        .style.display =
+        "block";
+
+
+      document
+        .getElementById(
+          "app"
+        )
+        .style.display =
+        "none";
+
+
+      document
+        .getElementById(
+          "logoutBtn"
+        )
+        .style.display =
+        "none";
+
+
+      if (refreshTimer) {
+
+        clearInterval(
+          refreshTimer
+        );
+
+        refreshTimer = null;
+
+      }
+
+
+      if (user) {
+
+        alert(
+          "Access denied"
+        );
+
+        signOut(
+          auth
+        );
+
+      }
+
     }
 
-  } else {
-    document.getElementById("loginScreen").style.display = "block";
-    document.getElementById("app").style.display = "none";
-    document.getElementById("logoutBtn").style.display = "none";
-
-    if (refreshTimer) {
-      clearInterval(refreshTimer);
-      refreshTimer = null;
-    }
-
-    if (user) {
-      alert("Access denied");
-      signOut(auth);
-    }
   }
-});
+
+);
+
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
 
 </body>
 </html>
